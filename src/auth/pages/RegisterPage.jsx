@@ -25,7 +25,6 @@ export const RegisterPage = () => {
         email: [(value) => value.includes('@'), 'El correo debe tener una @'],
         password: [(value) => value.length >= 6, 'El password debe tener mas de seis caracteres'],
         displayName: [(value) => value.length >= 1, 'El nombre es obligatorio'],
-
     }
 
     const [formSubmited, setFormSubmited] = useState(false)
@@ -41,7 +40,6 @@ export const RegisterPage = () => {
         setFormSubmited(true)
         if (!isFormValid) return;
         dispatch(startCreatingUserWithEmailAndPassword(formState))
-
     }
 
     return (

@@ -4,7 +4,9 @@ import {Google} from "@mui/icons-material";
 import {AuthLayout} from "../layout/AuthLayout.jsx";
 import {useForm} from "../../hooks/useForm.js";
 import {useDispatch, useSelector} from "react-redux";
-import {useMemo} from "react";
+import { useCallback, useMemo } from "react";
+import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
+import { api } from "../../api/api";
 
 export const LoginPage = () => {
 
@@ -19,17 +21,46 @@ export const LoginPage = () => {
     const isAuthenticating = useMemo(() => status === 'checking', [status]);
 
     const onSubmit = (event) => {
-        event.preventDefault();
-        console.log({email, password})
+        // event.preventDefault();
+        // console.log({email, password})
     }
 
     const onGoogleSignIn = () => {
         console.log('onGoogleSignIn')
-
     }
+
+    // --- RecaptchaV3 ---
+
+    const { executeRecaptcha } = useGoogleReCaptcha();
+
+    const handleReCaptchaVerify = useCallback(async () => {
+        if (!executeRecaptcha) {
+            console.log('Execute recaptcha not yet available');
+            return;
+        }
+
+        const frontToken = await executeRecaptcha('login');
+
+        console.log("RecaptchaV3 token: ", frontToken);
+
+        // Send the token to backend to validate
+        const response = await api.post('/recaptcha-verify', { params: frontToken });
+
+        console.log("RecaptchaV3 response: ", response.data);
+
+        if (response?.data?.score >= 0.7) {
+            console.log("RecaptchaV3 verification SUCCESS");
+            onSubmit();
+        } else {
+            console.log("RecaptchaV3 verification FAIL");
+        }
+
+    }, [executeRecaptcha]);
 
     return (
         <AuthLayout tittle="Login">
+            <Button type="button" variant="contained" fullWidth onClick={handleReCaptchaVerify}>CAPTCHA</Button>
+
             <form onSubmit={onSubmit}
             >
                 <Grid container>
@@ -65,9 +96,7 @@ export const LoginPage = () => {
 
                     <Grid container spacing={2} sx={{mb: 2, mt: 1}}>
                         <Grid item xs={12} sm={6}>
-                            <Button
-                                disabled={isAuthenticating}
-                                type="submit" variant="contained" fullWidth>Login</Button>
+                            <Button type="submit" variant="contained" fullWidth>Login</Button>
                         </Grid>
                         <Grid item xs={12} sm={6}>
                             <Button disabled={isAuthenticating}
