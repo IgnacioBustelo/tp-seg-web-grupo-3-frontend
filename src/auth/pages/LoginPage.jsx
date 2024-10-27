@@ -27,54 +27,58 @@ export const LoginPage = () => {
   const isAuthenticating = useMemo(() => status === "checking", [status]);
 
   const onSubmit = (event) => {
-    // event.preventDefault();
-    // console.log({email, password})
+    console.log("onSubmit");
+
+    event.preventDefault();
+    void handleReCaptchaVerify();
   };
 
-  const onGoogleSignIn = () => {
-    console.log("onGoogleSignIn");
-  };
+  const executeLogin = async () => {
+    console.log("executeLogin");
 
-  // --- RecaptchaV3 ---
+    console.log({email, password});
+
+    // TODO - Send /login request
+    console.warn("TODO - Implement");
+  };
 
   const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleReCaptchaVerify = useCallback(async () => {
+    console.log("handleReCaptchaVerify");
+
     if (!executeRecaptcha) {
-      console.log("Execute recaptcha not yet available");
+      console.error("Execute recaptcha not yet available");
       return;
     }
 
+    // Get front token from Google
     const frontToken = await executeRecaptcha("login");
 
-    console.log("RecaptchaV3 token: ", frontToken);
+    if (!frontToken) {
+      console.warn("RecaptchaV3 front token FAIL");
+      return;
+    }
+
+    console.log("RecaptchaV3 front token SUCCESS");
 
     // Send the token to backend to validate
-    const response = await api.post("/recaptcha-verify", {
-      params: frontToken,
-    });
+    const response = await api.post("/recaptcha-verify" + "?frontToken=" + frontToken);
 
     console.log("RecaptchaV3 response: ", response.data);
 
-    if (response?.data?.score >= 0.7) {
-      console.log("RecaptchaV3 verification SUCCESS");
-      onSubmit();
-    } else {
-      console.log("RecaptchaV3 verification FAIL");
+    // If the score is above 0.7, the user is not a bot
+    if (response?.data?.score < 0.7) {
+      console.warn("RecaptchaV3 backend verification FAIL");
+      return;
     }
+
+    console.log("RecaptchaV3 backend verification SUCCESS");
+    void executeLogin();
   }, [executeRecaptcha]);
 
   return (
     <AuthLayout tittle="Login">
-      <Button
-        type="button"
-        variant="contained"
-        fullWidth
-        onClick={handleReCaptchaVerify}
-      >
-        CAPTCHA
-      </Button>
-
       <form onSubmit={onSubmit}>
         <Grid container>
           <Grid item xs={12} sx={{ mt: 2 }}>
@@ -107,23 +111,11 @@ export const LoginPage = () => {
           </Grid>
 
           <Grid container spacing={2} sx={{ mb: 2, mt: 1 }}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={12}>
               <Button type="submit" variant="contained" fullWidth>
                 Login
               </Button>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <Button
-                disabled={isAuthenticating}
-                variant="contained"
-                fullWidth
-                onClick={onGoogleSignIn}
-              >
-                <Google />
-                <Typography sx={{ ml: 1 }}>Google</Typography>
-              </Button>
-            </Grid>
-
             <Grid container direction="row" justifyContent="end">
               <Link component={RouterLink} color="inherit" to="/auth/register">
                 Crear una cuenta
