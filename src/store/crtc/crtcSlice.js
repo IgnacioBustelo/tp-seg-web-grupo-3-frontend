@@ -1,20 +1,15 @@
-import {createSlice} from '@reduxjs/toolkit'
-
+import { createSlice } from "@reduxjs/toolkit";
 
 export const crtcSlice = createSlice({
-    name: 'crtc',
-    initialState: {
-        active: {
-            flows: [],
-            selectedFlow: null,
-            selectedNode: null
-        }
-
+  name: "crtc",
+  initialState: {
+    active: {
+      flows: [],
+      selectedFlow: null,
+      selectedNode: null,
     },
-    reducers: {
+  },
+  reducers: {},
+});
 
-    }
-})
-
-export const {
-} = crtcSlice.actions
+export const {} = crtcSlice.actions;
