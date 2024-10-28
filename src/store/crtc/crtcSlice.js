@@ -5,16 +5,18 @@ export const crtcSlice = createSlice({
     name: 'crtc',
     initialState: {
         active: {
-            flows: [],
-            selectedFlow: null,
-            selectedNode: null
+            userName: 'Pepito',
+            rol: 'admin',
+            materias: { "fisica": 8},
         }
 
     },
     reducers: {
 
+        setInitialState: (state, action) => {
+            state.active = action.payload;
+        }
     }
 })
 
-export const {
-} = crtcSlice.actions
+export const {} = crtcSlice.actions
