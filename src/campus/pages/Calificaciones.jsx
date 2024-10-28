@@ -21,7 +21,9 @@ export const Calificaciones = () => {
 
     return (
         <>
-            <h1>Calificaciones</h1>
+            <Typography variant="h4" style={{ textAlign: 'center', marginBottom: '20px', marginTop: '20px' }}>
+                Rendimiento Académico
+            </Typography>
             <TableContainer component={Paper} style={{ maxWidth: 600, margin: '0 auto' }}>
                 <Table>
                     <TableHead>

@@ -12,13 +12,13 @@ export const AppRouter = () => {
     return (
         <Routes>
             <Route path="/" element={<Layout/>}>
+                <Route index element={<HomePage />} />
 
                 {
                     (status === 'authenticated')
                         ? <Route path="/*" element={<AppRoutes/>}/>
                         : <Route path="/auth/*" element={<AuthRoutes/>}/>
                 }
-                {/* Rutas anidadas dentro del Layout */}
                 <Route path="campus" element={<HomePage/>}/>
                 <Route path="notYet" element={<NotYet/>}/>
                 <Route path="calificaciones" element={<Calificaciones/>}/>

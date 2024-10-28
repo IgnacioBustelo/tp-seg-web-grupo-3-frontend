@@ -20,10 +20,9 @@ const NotYet = () => {
                     left: '20px',
                 }}
             >
-                Volver
+                Home
             </Button>
 
-            {/* Contenido de la página */}
             <h1>Not yet desarrollated</h1>
             <img src={image} alt="En construcción" style={{ maxWidth: '100%', height: 'auto' }} />
         </div>
