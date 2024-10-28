@@ -1,6 +1,6 @@
 import React from "react";
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
-import { Link } from "react-router-dom"; // Importa Link
+import { Link } from "react-router-dom";
 
 const menuItems = [
     { text: 'Materias en curso', path: '/notYet' },

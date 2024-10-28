@@ -7,7 +7,11 @@ export const crtcSlice = createSlice({
         active: {
             userName: 'Pepito',
             rol: 'admin',
-            materias: { "fisica": 8},
+            materias: { "Física": 8,
+            "Algebra": 7,
+            "Matematica Discreta": 10,
+            "Quimica": 4,
+            "Analisis Matematico 1": 7},
         }
 
     },
