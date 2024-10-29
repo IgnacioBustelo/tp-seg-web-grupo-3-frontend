@@ -1,6 +1,7 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import {Box, Typography} from '@mui/material';
+import {ControlPanel} from "./ControlPanel";
 
 
 export const HomePage = () => {
@@ -15,9 +16,13 @@ export const HomePage = () => {
                 <Typography variant="h6">Bienvenido {userInfo.userName}</Typography>
                 <Typography variant="body1">Eres {userInfo.rol}</Typography>
             </Box>
-            <Typography variant="body1" sx={{marginTop: '20px'}}>
-                Explora tus materias, horarios y calificaciones desde el menú superior.
-            </Typography>
+            {userInfo.rol === 'Estudiante' &&
+                (<Typography variant="body1" sx={{marginTop: '20px'}}>
+                        Explora tus materias, horarios y calificaciones desde el menú superior.
+                    </Typography>
+                )}
+            {userInfo.rol === 'admin' &&
+                <ControlPanel/>}
         </Box>
 
     );
