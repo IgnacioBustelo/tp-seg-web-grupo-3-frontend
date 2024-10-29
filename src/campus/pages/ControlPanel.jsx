@@ -124,7 +124,6 @@ export const ControlPanel = () => {
                                 labelId="coffee-select-label"
                                 value={coffeeType}
                                 onChange={(e) => setCoffeeType(e.target.value)}
-                                style={{ marginTop: '10px', marginBottom: '10px' }}
                             >
                                 <MenuItem value="cortado">Cortado</MenuItem>
                                 <MenuItem value="expreso">Expreso</MenuItem>

@@ -2,6 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {Box, Typography} from '@mui/material';
 import {ControlPanel} from "./ControlPanel";
+import {Users} from "./Users";
 
 
 export const HomePage = () => {
@@ -23,6 +24,9 @@ export const HomePage = () => {
                 )}
             {userInfo.rol === 'admin' &&
                 <ControlPanel/>}
+            {userInfo.rol === 'Docente' &&
+                <Users/>
+            }
         </Box>
 
     );

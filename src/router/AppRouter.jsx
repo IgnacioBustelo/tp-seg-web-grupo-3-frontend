@@ -5,6 +5,7 @@ import NotYet from "../campus/pages/NotJet";
 import {Calificaciones} from "../campus/pages/Calificaciones";
 import {Layout} from "../campus/pages/Layout";
 import {HomePage} from "../campus/pages/HomePage";
+import {UsersV2} from "../campus/pages/UsersV2";
 
 export const AppRouter = () => {
     const status = 'false';
@@ -22,6 +23,7 @@ export const AppRouter = () => {
                 <Route path="campus" element={<HomePage/>}/>
                 <Route path="notYet" element={<NotYet/>}/>
                 <Route path="calificaciones" element={<Calificaciones/>}/>
+                <Route path="users-v2" element={<UsersV2/>}/>
                 <Route path="/*" element={<Navigate to="/campus"/>}/> </Route>
         </Routes>
     );
