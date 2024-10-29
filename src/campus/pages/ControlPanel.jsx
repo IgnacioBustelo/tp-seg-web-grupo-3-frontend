@@ -122,6 +122,7 @@ export const ControlPanel = () => {
                             <InputLabel id="coffee-select-label">Tipo de café</InputLabel>
                             <Select
                                 labelId="coffee-select-label"
+                                variant="outlined"
                                 value={coffeeType}
                                 onChange={(e) => setCoffeeType(e.target.value)}
                             >
