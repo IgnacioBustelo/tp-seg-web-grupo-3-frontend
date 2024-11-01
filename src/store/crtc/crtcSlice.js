@@ -4,12 +4,28 @@ export const crtcSlice = createSlice({
   name: "crtc",
   initialState: {
     active: {
-      flows: [],
-      selectedFlow: null,
-      selectedNode: null,
+      userName: "Pepito",
+      rol: "Estudiante",
+      materiasCursadas: {
+        Física: 8,
+        Algebra: 7,
+      },
     },
   },
-  reducers: {},
+  reducers: {
+    setInitialState: (state, action) => {
+      state.active = action.payload;
+    },
+    setMaterias: (state, action) => {
+      console.log(state);
+      console.log(action);
+      state.active = {
+        userName: state.active.userName,
+        rol: state.active.rol,
+        materiasCursadas: action.payload,
+      };
+    },
+  },
 });
 
-export const {} = crtcSlice.actions;
+export const { setMaterias } = crtcSlice.actions;
