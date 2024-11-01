@@ -1,45 +1,51 @@
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useNavigate } from "react-router-dom";
 import {
   Alert,
   Button,
   Grid,
   Link,
   TextField,
-  Typography,
 } from "@mui/material";
-import { Google } from "@mui/icons-material";
 import { AuthLayout } from "../layout/AuthLayout.jsx";
-import { useForm } from "../../hooks/useForm.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback, useMemo } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { api } from "../../api/api";
+import { useForm } from "react-hook-form";
+import { login } from "../../store/auth/authSlice";
 
 export const LoginPage = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const { status, errorMessage } = useSelector((state) => state.auth);
 
-  const { email, password, onInputChange } = useForm({
-    email: "",
-    password: "",
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+  } = useForm();
 
   const isAuthenticating = useMemo(() => status === "checking", [status]);
 
-  const onSubmit = (event) => {
+  const onSubmit = (data) => {
     console.log("onSubmit");
-
-    event.preventDefault();
     void handleReCaptchaVerify();
   };
 
   const executeLogin = async () => {
     console.log("executeLogin");
 
-    console.log({email, password});
+    console.log("formValues: ", getValues());
 
-    // TODO - Send /login request
-    console.warn("TODO - Implement");
+    const response = await api.post("/login", getValues());
+    const authToken = response.data;
+
+    console.log("authToken", authToken);
+
+    dispatch(login(authToken));
+    // Will be automatically redirected to the home page when state changes
   };
 
   const { executeRecaptcha } = useGoogleReCaptcha();
@@ -79,7 +85,7 @@ export const LoginPage = () => {
 
   return (
     <AuthLayout tittle="Login">
-      <form onSubmit={onSubmit}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container>
           <Grid item xs={12} sx={{ mt: 2 }}>
             <TextField
@@ -88,8 +94,9 @@ export const LoginPage = () => {
               placeholder="correo@google.com"
               fullWidth
               name="email"
-              value={email}
-              onChange={onInputChange}
+              {...register("email", { required: "Email es requerido" })}
+              error={!!errors.email}
+              helperText={errors.email?.message}
             />
           </Grid>
           <Grid item xs={12} sx={{ mt: 2 }}>
@@ -99,8 +106,9 @@ export const LoginPage = () => {
               placeholder="contraseña"
               fullWidth
               name="password"
-              value={password}
-              onChange={onInputChange}
+              {...register("password", { required: "Contraseña es requerida" })}
+              error={!!errors.password}
+              helperText={errors.password?.message}
             />
           </Grid>
 
