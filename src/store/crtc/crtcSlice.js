@@ -5,7 +5,7 @@ export const crtcSlice = createSlice({
   initialState: {
     active: {
       userName: "Pepito",
-      rol: "Docente",
+      rol: "admin",
       materiasCursadas: {
         Física: 8,
         Algebra: 7,
