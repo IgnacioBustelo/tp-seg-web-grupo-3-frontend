@@ -1,155 +1,157 @@
 /* Define el estilo para un botón "contained" */
 .contained-button {
-    background-color: #169b03; /* Color de fondo */
-    color: #ffffff; /* Color del texto */
-    border: none; /* Elimina el borde */
-    padding: 10px 20px; /* Espaciado interno */
-    border-radius: 4px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor al pasar el mouse */
-    transition: background-color 0.3s ease;
-    margin: 10px
+  background-color: #169b03; /* Color de fondo */
+  color: #ffffff; /* Color del texto */
+  border: none; /* Elimina el borde */
+  padding: 10px 20px; /* Espaciado interno */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  transition: background-color 0.3s ease;
+  margin: 10px;
 }
 
 .contained-button-alt {
-    background-color: #2196F3; /* Color de fondo */
-    color: #ffffff; /* Color del texto */
-    border: none; /* Elimina el borde */
-    padding: 10px 20px; /* Espaciado interno */
-    border-radius: 4px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor al pasar el mouse */
-    transition: background-color 0.3s ease;
-    margin: 10px
+  background-color: #2196f3; /* Color de fondo */
+  color: #ffffff; /* Color del texto */
+  border: none; /* Elimina el borde */
+  padding: 10px 20px; /* Espaciado interno */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  transition: background-color 0.3s ease;
+  margin: 10px;
 }
 
 /* Estilo para el botón */
 .download-regre-button {
-    background-color: #0D47A1; /* Color de fondo */
-    color: rgba(255, 255, 255, 0.8); /* Color del texto */
-    border: none; /* Elimina el borde */
-    padding: 10px 10px; /* Espaciado interno */
-    border-radius: 4px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor al pasar el mouse */
-    transition: background-color 0.3s ease;
+  background-color: #0d47a1; /* Color de fondo */
+  color: rgba(255, 255, 255, 0.8); /* Color del texto */
+  border: none; /* Elimina el borde */
+  padding: 10px 10px; /* Espaciado interno */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  transition: background-color 0.3s ease;
 }
 
 /* Estilo para los iconos */
 .download-regre-button .MuiButton-startIcon,
 .download-regre-button .MuiButton-endIcon {
-    vertical-align: middle; /* Alinear verticalmente con el texto */
+  vertical-align: middle; /* Alinear verticalmente con el texto */
 }
 
 .contained-button-alt-2 {
-    background-color: #4CAF50; /* Color de fondo */
-    color: #ffffff; /* Color del texto */
-    border: none; /* Elimina el borde */
-    padding: 10px 20px; /* Espaciado interno */
-    border-radius: 4px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor al pasar el mouse */
-    transition: background-color 0.3s ease;
-    margin: 10px
+  background-color: #4caf50; /* Color de fondo */
+  color: #ffffff; /* Color del texto */
+  border: none; /* Elimina el borde */
+  padding: 10px 20px; /* Espaciado interno */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  transition: background-color 0.3s ease;
+  margin: 10px;
 }
 
 /* Cambia el color de fondo al pasar el mouse */
 .contained-button:hover {
-    background-color: rgb(60, 67, 73); /* Nuevo color de fondo al pasar el mouse */
+  background-color: rgb(
+    60,
+    67,
+    73
+  ); /* Nuevo color de fondo al pasar el mouse */
 }
 
 /* Cambia el color de fondo al hacer clic en el botón */
 .contained-button:active {
-    background-color: #0D47A1; /* Nuevo color de fondo al hacer clic */
+  background-color: #0d47a1; /* Nuevo color de fondo al hacer clic */
 }
 
 /* Define el estilo para un botón "contained" */
 .icon-button {
-    background-color: #da0101; /* Color de fondo */
-    color: #ffffff; /* Color del texto */
-    border: none; /* Elimina el borde */
-    padding: 5px 20px; /* Espaciado interno */
-    border-radius: 4px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor al pasar el mouse */
-    transition: background-color 0.3s ease; /* Transición de color de fondo */
-    margin: 10px
-
+  background-color: #da0101; /* Color de fondo */
+  color: #ffffff; /* Color del texto */
+  border: none; /* Elimina el borde */
+  padding: 5px 20px; /* Espaciado interno */
+  border-radius: 4px; /* Bordes redondeados */
+  cursor: pointer; /* Cambia el cursor al pasar el mouse */
+  transition: background-color 0.3s ease; /* Transición de color de fondo */
+  margin: 10px;
 }
 
 /* Cambia el color de fondo al pasar el mouse */
 .icon-button:hover {
-    background-color: #1976D2; /* Nuevo color de fondo al pasar el mouse */
+  background-color: #1976d2; /* Nuevo color de fondo al pasar el mouse */
 }
 
 /* Cambia el color de fondo al hacer clic en el botón */
 .icon-button:active {
-    background-color: #0D47A1; /* Nuevo color de fondo al hacer clic */
+  background-color: #0d47a1; /* Nuevo color de fondo al hacer clic */
 }
 
 .contained-button.disabled {
-    background-color: #ccc; /* Cambia el color de fondo cuando está deshabilitado */
-    cursor: not-allowed; /* Cambia el cursor cuando está deshabilitado */
-    /* Otros estilos deseados cuando está deshabilitado */
+  background-color: #ccc; /* Cambia el color de fondo cuando está deshabilitado */
+  cursor: not-allowed; /* Cambia el cursor cuando está deshabilitado */
+  /* Otros estilos deseados cuando está deshabilitado */
 }
 
 .icon-button.disabled {
-    background-color: #ccc; /* Cambia el color de fondo cuando está deshabilitado */
-    cursor: not-allowed; /* Cambia el cursor cuando está deshabilitado */
-    /* Otros estilos deseados cuando está deshabilitado */
+  background-color: #ccc; /* Cambia el color de fondo cuando está deshabilitado */
+  cursor: not-allowed; /* Cambia el cursor cuando está deshabilitado */
+  /* Otros estilos deseados cuando está deshabilitado */
 }
 
 .bold-text {
-    font-weight: bold; /* Hace que el texto dentro de elementos con la clase "bold-text" sea negrita */
+  font-weight: bold; /* Hace que el texto dentro de elementos con la clase "bold-text" sea negrita */
 }
 
 .list-item-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .list-item-content {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .error {
-    margin-top: 10px;
-    border: 1px solid black; /* Agregar borde negro */
-    background-color: rgba(255, 0, 0, 0.21); /* Color rojo */
-    margin-bottom: 10px; /* Agregar margen inferior */
+  margin-top: 10px;
+  border: 1px solid black; /* Agregar borde negro */
+  background-color: rgba(255, 0, 0, 0.21); /* Color rojo */
+  margin-bottom: 10px; /* Agregar margen inferior */
 }
 
 .warning {
-    margin-top: 10px;
+  margin-top: 10px;
 
-    border: 1px solid black; /* Agregar borde negro */
-    background-color: rgba(255, 213, 0, 0.25); /* Color amarillo */
-    margin-bottom: 10px; /* Agregar margen inferior */
+  border: 1px solid black; /* Agregar borde negro */
+  background-color: rgba(255, 213, 0, 0.25); /* Color amarillo */
+  margin-bottom: 10px; /* Agregar margen inferior */
 }
 
 .success {
-    margin-top: 10px;
+  margin-top: 10px;
 
-    border: 1px solid black; /* Agregar borde negro */
-    background-color: rgba(77, 255, 0, 0.22); /* Color verde */
-    margin-bottom: 10px; /* Agregar margen inferior */
+  border: 1px solid black; /* Agregar borde negro */
+  background-color: rgba(77, 255, 0, 0.22); /* Color verde */
+  margin-bottom: 10px; /* Agregar margen inferior */
 }
 
-
 .errorIcon {
-    margin-top: 10px;
+  margin-top: 10px;
 
-    color: rgb(255, 0, 0); /* Color rojo */
-    margin-bottom: 10px; /* Agregar margen inferior */
+  color: rgb(255, 0, 0); /* Color rojo */
+  margin-bottom: 10px; /* Agregar margen inferior */
 }
 
 .warningIcon {
-    margin-top: 10px;
+  margin-top: 10px;
 
-    color: rgb(255, 211, 0); /* Color amarillo */
-    margin-bottom: 10px; /* Agregar margen inferior */
+  color: rgb(255, 211, 0); /* Color amarillo */
+  margin-bottom: 10px; /* Agregar margen inferior */
 }
 
 .successIcon {
-    margin-top: 10px;
+  margin-top: 10px;
 
-    color: rgb(34, 255, 0); /* Color verde */
-    margin-bottom: 10px; /* Agregar margen inferior */
+  color: rgb(34, 255, 0); /* Color verde */
+  margin-bottom: 10px; /* Agregar margen inferior */
 }
