@@ -13,7 +13,7 @@ import {
 
 export const Calificaciones = () => {
     const userInfo = useSelector((state) => state.crtc).active;
-    const materias = userInfo.materias;
+    const materias = userInfo.materiasCursadas;
 
     // Calcular el promedio
     const calificacionesArray = Object.values(materias);

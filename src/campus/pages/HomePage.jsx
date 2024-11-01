@@ -1,13 +1,23 @@
-import React from 'react';
-import {useSelector} from 'react-redux';
+import React, {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {Box, Typography} from '@mui/material';
 import {ControlPanel} from "./ControlPanel";
 import {Users} from "./Users";
+import {startLoadingSignatures} from "../../store/crtc/thunks";
 
 
 export const HomePage = () => {
 
     const userInfo = useSelector((state) => state.crtc).active;
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (userInfo.rol === 'Estudiante'){
+            dispatch(startLoadingSignatures());
+        }
+
+    }, [dispatch]);
 
 
     return (

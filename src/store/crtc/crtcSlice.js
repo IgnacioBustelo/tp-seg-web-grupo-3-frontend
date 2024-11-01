@@ -6,12 +6,11 @@ export const crtcSlice = createSlice({
     initialState: {
         active: {
             userName: 'Pepito',
-            rol: 'Docente',
-            materiasCursadas: { "Física": 8,
-            "Algebra": 7,
-            "Matematica Discreta": 10,
-            "Quimica": 4,
-            "Analisis Matematico 1": 7},
+            rol: 'Estudiante',
+            materiasCursadas: {
+                "Física": 8,
+                "Algebra": 7,
+            },
 
 
         }
@@ -21,8 +20,19 @@ export const crtcSlice = createSlice({
 
         setInitialState: (state, action) => {
             state.active = action.payload;
+        },
+        setMaterias: (state, action) => {
+            console.log(state)
+            console.log(action)
+                state.active = {
+                    userName: state.active.userName,
+                    rol: state.active.rol,
+                    materiasCursadas: action.payload
+                };
+
         }
+
     }
 })
 
-export const {} = crtcSlice.actions
+export const {setMaterias} = crtcSlice.actions
