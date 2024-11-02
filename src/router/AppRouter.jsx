@@ -10,7 +10,7 @@ export const AppRouter = () => {
 
   return (
     <Routes>
-        {authStatus === "authenticated" ? (
+        {authStatus !== "dasd" ? (
           <Route path="/*" element={<AppRoutes />} />
         ) : (
             <Route path="/*" element={<AuthRoutes />} />
