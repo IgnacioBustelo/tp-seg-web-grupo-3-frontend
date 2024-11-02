@@ -45,7 +45,10 @@ export const LoginPage = () => {
     console.log("authToken", authToken);
 
     dispatch(login(authToken));
+    localStorage.setItem("authToken", authToken);
     // Will be automatically redirected to the home page when state changes
+
+
   };
 
   const { executeRecaptcha } = useGoogleReCaptcha();

@@ -4,6 +4,10 @@ import { AppRouter } from "./router/AppRouter";
 import { GoogleReCaptchaProvider } from "react-google-recaptcha-v3";
 
 export const App = () => {
+
+    // TODO - Read the token from authSlice, if present, send request to
+    // /current-user, and set the user data in crtcSlice
+
   return (
     <GoogleReCaptchaProvider
       reCaptchaKey="6Ld2EGsqAAAAAGgaObHGmhxh2zo7u4W0oEYI3W1V"
