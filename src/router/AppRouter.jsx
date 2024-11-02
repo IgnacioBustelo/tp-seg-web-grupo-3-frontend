@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { AuthRoutes } from "../auth/routes/AuthRoutes.jsx";
 import { AppRoutes } from "../campus/routes/AppRoutes.jsx";
 import { useSelector } from "react-redux";
@@ -10,7 +10,7 @@ export const AppRouter = () => {
 
   return (
     <Routes>
-        {authStatus !== "dasd" ? (
+      {authStatus === "authenticated" ? (
           <Route path="/*" element={<AppRoutes />} />
         ) : (
             <Route path="/*" element={<AuthRoutes />} />
