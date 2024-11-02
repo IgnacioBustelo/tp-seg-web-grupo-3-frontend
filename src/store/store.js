@@ -2,19 +2,21 @@ import { configureStore } from "@reduxjs/toolkit";
 import { authSlice } from "./auth/authSlice.js";
 import { crtcSlice } from "./crtc/crtcSlice.js";
 
-const LOCAL_STORAGE_KEY = 'authState';
+const AUTH_LOCAL_STORAGE_KEY = 'authState';
+const CRTC_LOCAL_STORAGE_KEY = 'crtcState';
 
-const saveAuthStateToLocalStorage = (state) => {
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state));
+const saveStateToLocalStorage = (state, key) => {
+  localStorage.setItem(key, JSON.stringify(state));
 };
 
-const loadAuthStateFromLocalStorage = () => {
-  const state = localStorage.getItem(LOCAL_STORAGE_KEY);
+const loadStateFromLocalStorage = (key) => {
+  const state = localStorage.getItem(key);
   return state ? JSON.parse(state) : undefined;
 };
 
 const preloadedState = {
-  auth: loadAuthStateFromLocalStorage() || { status: 'not-authenticated', authToken: null },
+  auth: loadStateFromLocalStorage(AUTH_LOCAL_STORAGE_KEY) || { status: 'not-authenticated', authToken: null },
+  crtc: loadStateFromLocalStorage(CRTC_LOCAL_STORAGE_KEY) || { active: { userName: '', rol: '', materiasCursadas: {} } },
 };
 
 export const store = configureStore({
@@ -29,5 +31,6 @@ export const store = configureStore({
 // Subscribe to store changes to save auth state to local storage
 store.subscribe(() => {
   const state = store.getState();
-  saveAuthStateToLocalStorage(state.auth);
+  saveStateToLocalStorage(state.auth, AUTH_LOCAL_STORAGE_KEY);
+  saveStateToLocalStorage(state.crtc, CRTC_LOCAL_STORAGE_KEY);
 });

@@ -17,15 +17,32 @@ export const crtcSlice = createSlice({
       state.active = action.payload;
     },
     setMaterias: (state, action) => {
-      console.log(state);
-      console.log(action);
+      console.log("STATE HOLA:", state);
+      console.log("ACTION HOLA:", action);
       state.active = {
         userName: state.active.userName,
         rol: state.active.rol,
         materiasCursadas: action.payload,
       };
     },
+    setUsername: (state, action) => {
+      state.active = {
+        userName: action.payload,
+        rol: state.active.rol,
+        materiasCursadas: state.active.materiasCursadas,
+      };
+    },
+    setRol: (state, action) => {
+      state.active = {
+        userName: state.active.userName,
+        rol: action.payload,
+        materiasCursadas: state.active.materiasCursadas,
+      };
+    },
   },
 });
 
-export const { setMaterias } = crtcSlice.actions;
+export const {
+  setMaterias,
+  setUsername,
+  setRol } = crtcSlice.actions;

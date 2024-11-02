@@ -13,6 +13,7 @@ import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { api } from "../../api/api";
 import { useForm } from "react-hook-form";
 import { login } from "../../store/auth/authSlice";
+import { setMaterias, setRol, setUsername } from "../../store/crtc/crtcSlice";
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -45,10 +46,30 @@ export const LoginPage = () => {
     console.log("authToken", authToken);
 
     dispatch(login(authToken));
-    localStorage.setItem("authToken", authToken);
     // Will be automatically redirected to the home page when state changes
 
+    const responseUser = await api.get("/current-user", getValues());
+    const userId = responseUser.data.id;
 
+    console.log("ResponseUser:", responseUser);
+    dispatch(setUsername(responseUser.data.name));
+    dispatch(setRol(responseUser.data.role));
+
+    // Send a request of GET to /sturdents/userId/grades to get all grades from this student
+    const responseGrades = await api.get("/students/" + userId + "/grades");
+
+    let materiasCursadas = {};
+
+    responseGrades.data.forEach(item => {
+      const subjectName = item.subject.name;
+      const subjectValue = item.value;
+
+      materiasCursadas[subjectName] = subjectValue;
+    });
+
+    dispatch(setMaterias(materiasCursadas));
+
+    console.log("responseGrades:", responseGrades);
   };
 
   const { executeRecaptcha } = useGoogleReCaptcha();

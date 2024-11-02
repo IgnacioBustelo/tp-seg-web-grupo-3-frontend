@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { api } from "../../api/api";
+import { useSelector } from "react-redux";
 
 export const ControlPanel = () => {
     const [userNameToFire, setUserNameToFire] = useState("");
@@ -74,7 +75,9 @@ export const ControlPanel = () => {
         setShowModal(false);
     };
 
-    return (
+    const userInfo = useSelector((state) => state.crtc).active;
+
+    return userInfo.rol === "admin" && (
         <Grid container spacing={3} justifyContent="space-around" p={3}>
             {/* Cuadro para Cambiar Rol */}
             <Grid item xs={12} sm={6} md={3}>
