@@ -9,7 +9,6 @@ import { ThemeProvider } from "@mui/material";
 import { App } from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <ThemeProvider theme={purpleTheme}>
@@ -17,5 +16,4 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </ThemeProvider>
       </BrowserRouter>
     </Provider>
-  </React.StrictMode>,
 );
