@@ -1,3 +1,9 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Disallow: /students
+Disallow: /teachers
+Disallow: /admin
+Disallow: /login
+Disallow: /home
+Disallow: /materias
+Disallow: /notYet

@@ -13,7 +13,7 @@ export const AppRoutes = () => {
             <Route path="campus" element={<HomePage />} />
             <Route path="notYet" element={<NotYet />} />
             <Route path="calificaciones" element={<Calificaciones />} />
-            <Route path="users-v2" element={<UsersV2 />} />
+            <Route path="students" element={<UsersV2 />} />
             <Route path="/*" element={<Navigate to="/campus" />} />
         </Route>
     </Routes>

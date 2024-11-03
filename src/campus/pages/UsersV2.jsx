@@ -40,7 +40,7 @@ export const UsersV2 = () => {
     }
   };
 
-  if (rol !== "Docente") {
+  if (rol !== "teacher") {
     return (
         <Container>
           <Box sx={{ mt: 4, textAlign: "center" }}>

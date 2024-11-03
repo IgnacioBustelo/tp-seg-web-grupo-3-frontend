@@ -1,14 +1,8 @@
 import { Link as RouterLink, useNavigate } from "react-router-dom";
-import {
-  Alert,
-  Button,
-  Grid,
-  Link,
-  TextField,
-} from "@mui/material";
+import { Alert, Button, Grid, Link, TextField, } from "@mui/material";
 import { AuthLayout } from "../layout/AuthLayout.jsx";
 import { useDispatch, useSelector } from "react-redux";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 import { api } from "../../api/api";
 import { useForm } from "react-hook-form";
@@ -21,6 +15,8 @@ export const LoginPage = () => {
 
   const { status, errorMessage } = useSelector((state) => state.auth);
 
+  const [hasError , setHasError] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -31,6 +27,7 @@ export const LoginPage = () => {
   const isAuthenticating = useMemo(() => status === "checking", [status]);
 
   const onSubmit = (data) => {
+    setHasError(false);
     console.log("onSubmit");
     void handleReCaptchaVerify();
   };
@@ -40,36 +37,44 @@ export const LoginPage = () => {
 
     console.log("formValues: ", getValues());
 
-    const response = await api.post("/login", getValues());
-    const authToken = response.data;
+    // const response = await api.post("/login", getValues());
+    // const authToken = response.data;
 
-    console.log("authToken", authToken);
+    api.post("/login", getValues())
+        .then(async response =>  {
+          const authToken = response.data;
 
-    dispatch(login(authToken));
-    // Will be automatically redirected to the home page when state changes
+          console.log("authToken", authToken);
 
-    const responseUser = await api.get("/current-user", getValues());
-    const userId = responseUser.data.id;
+          dispatch(login(authToken));
+          // Will be automatically redirected to the home page when state changes
 
-    console.log("ResponseUser:", responseUser);
-    dispatch(setUsername(responseUser.data.name));
-    dispatch(setRol(responseUser.data.role));
+          const responseUser = await api.get("/current-user");
+          const userId = responseUser.data.id;
 
-    // Send a request of GET to /sturdents/userId/grades to get all grades from this student
-    const responseGrades = await api.get("/students/" + userId + "/grades");
+          console.log("ResponseUser:", responseUser);
+          dispatch(setUsername(responseUser.data.name));
+          dispatch(setRol(responseUser.data.role));
 
-    let materiasCursadas = {};
+          // Send a request of GET to /sturdents/userId/grades to get all grades from this student
+          const responseGrades = await api.get("/students/" + userId + "/grades");
 
-    responseGrades.data.forEach(item => {
-      const subjectName = item.subject.name;
-      const subjectValue = item.value;
+          let materiasCursadas = {};
 
-      materiasCursadas[subjectName] = subjectValue;
-    });
+          responseGrades.data.forEach(item => {
+            const subjectName = item.subject.name;
+            materiasCursadas[subjectName] = item.value;
+          });
 
-    dispatch(setMaterias(materiasCursadas));
+          dispatch(setMaterias(materiasCursadas));
 
-    console.log("responseGrades:", responseGrades);
+          console.log("responseGrades:", responseGrades);
+
+        })
+        .catch(error => {
+          console.error("Login error:", error);
+          setHasError(true);
+        });
   };
 
   const { executeRecaptcha } = useGoogleReCaptcha();
@@ -109,6 +114,11 @@ export const LoginPage = () => {
 
   return (
     <AuthLayout tittle="Login">
+      {
+        hasError && (
+          <Alert severity="error">Credenciales invalidas.</Alert>
+        )
+      }
       <form onSubmit={handleSubmit(onSubmit)}>
         <Grid container>
           <Grid item xs={12} sx={{ mt: 2 }}>

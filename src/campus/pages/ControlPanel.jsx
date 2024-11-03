@@ -34,14 +34,18 @@ export const ControlPanel = () => {
       setShowModal(true);
   };
 
-    const handleRoleChange = async () => {
+    const handleRoleChange = async (url) => {
         console.log(`Se cambió el rol de ${userName} a ${newRole}`);
         setUserName("");
         setNewRole("");
         try {
-            const data= { userName, newRole };
-            console.log('data', data)
-            const response = await api.post("/users", data);
+            const user = {
+                role: newRole
+            }
+
+            console.log('user', user);
+
+            const response = await api.put(url + "/" + userName, user);
             console.log("Respuesta del servidor:", response.data);
 
             setModalMessage("Rol cambiado con éxito");
@@ -102,7 +106,7 @@ export const ControlPanel = () => {
                         Cambiar rol de usuario
                     </Typography>
                     <TextField
-                        label="Nombre de usuario"
+                        label="ID de usuario"
                         variant="outlined"
                         value={userName}
                         onChange={(e) => setUserName(e.target.value)}
@@ -123,7 +127,7 @@ export const ControlPanel = () => {
                     <Button
                         variant="contained"
                         color="primary"
-                        onClick={handleRoleChange}
+                        onClick={() => handleRoleChange("/users")}
                         style={{ marginTop: "10px" }}
                     >
                         Cambiar rol
