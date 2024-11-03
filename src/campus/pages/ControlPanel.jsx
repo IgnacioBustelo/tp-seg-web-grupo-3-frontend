@@ -77,9 +77,14 @@ export const ControlPanel = () => {
 
     const userInfo = useSelector((state) => state.crtc).active;
 
-    return userInfo.rol === "admin" && (
-        <Grid container spacing={3} justifyContent="space-around" p={3}>
-            {/* Cuadro para Cambiar Rol */}
+    return  (
+        <Grid
+            container
+            spacing={3}
+            justifyContent="space-around"
+            p={3}
+            style={{ display: userInfo.rol !== "admin" ? 'none' : 'flex' }}
+        >            {/* Cuadro para Cambiar Rol */}
             <Grid item xs={12} sm={6} md={3}>
                 <Box
                     sx={{
