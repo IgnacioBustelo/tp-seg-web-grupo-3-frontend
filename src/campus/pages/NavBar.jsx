@@ -3,6 +3,7 @@ import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 const menuItems = [
+  { text: "Home", path: "/campus" },
   { text: "Materias en curso", path: "/notYet" },
   { text: "Perfil", path: "/notYet" },
   { text: "Horarios", path: "/notYet" },
