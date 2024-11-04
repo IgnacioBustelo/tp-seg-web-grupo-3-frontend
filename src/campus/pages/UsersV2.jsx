@@ -64,7 +64,7 @@ export const UsersV2 = () => {
               color="error"
               sx={{ fontWeight: "bold", mb: 2 }}
           >
-            ⚠️ PELIGRO: PAGINA EN CONSTRUCCIÓN ⚠️
+            ⚠️ PELIGRO: PÁGINA EN CONSTRUCCIÓN ⚠️
           </Typography>
           <Typography
               variant="body1"

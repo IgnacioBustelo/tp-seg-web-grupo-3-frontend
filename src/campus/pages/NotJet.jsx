@@ -1,7 +1,7 @@
 // src/pages/NotYet.js
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import image from "../../media/170995_1703258738_724.jpg";
+import image from "../../media/jorge_el_curioso.jpg";
 import { Button } from "@mui/material";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
