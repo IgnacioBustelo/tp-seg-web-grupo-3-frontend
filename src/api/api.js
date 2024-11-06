@@ -3,7 +3,7 @@ import {store} from "../store/store";
 
 export const api = axios.create({
     //TODO completar cuando se tengan los endpoints del back
-    baseURL: "http://localhost:8080/"
+    baseURL: "http://localhost:8085/"
 });
 
 api.interceptors.request.use((config) => {

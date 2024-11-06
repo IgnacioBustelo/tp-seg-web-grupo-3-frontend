@@ -83,27 +83,35 @@ export const UsersV2 = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <TextField
                 label="Nombre"
-                {...register("firstName", { required: "Nombre es requerido" })}
+                {...register("name", { required: "Nombre es requerido" })}
                 fullWidth
                 margin="normal"
-                error={!!errors.firstName}
-                helperText={errors.firstName?.message}
+                error={!!errors.name}
+                helperText={errors.name?.message}
             />
             <TextField
-                label="Apellido"
-                {...register("lastName", { required: "Apellido es requerido" })}
+                label="Rol"
+                {...register("role", { required: "Rol es requerido" })}
                 fullWidth
                 margin="normal"
-                error={!!errors.lastName}
-                helperText={errors.lastName?.message}
+                error={!!errors.role}
+                helperText={errors.role?.message}
             />
             <TextField
-                label="Materia"
-                {...register("subject", { required: "Materia es requerida" })}
+                label="Email"
+                {...register("email", { required: "Email es requerido" })}
                 fullWidth
                 margin="normal"
-                error={!!errors.subject}
-                helperText={errors.subject?.message}
+                error={!!errors.email}
+                helperText={errors.email?.message}
+            />
+            <TextField
+                label="Contraseña"
+                {...register("password", { required: "Contraseña es requerida" })}
+                fullWidth
+                margin="normal"
+                error={!!errors.password}
+                helperText={errors.password?.message}
             />
             <Button
                 type="submit"
